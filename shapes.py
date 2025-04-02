@@ -30,6 +30,16 @@ class Rect(Shape):
         self.height = height
         self.width = width
         
+    def change_x_pos(self, new_x):
+        self.x = new_x
+
+        self.rect = pygame.Rect(new_x, self.y, self.width, self.height)
+
+    def change_y_pos(self, new_y):
+        self.y = new_y
+
+        self.rect = pygame.Rect(self.x, new_y, self.width, self.height)
+        
     
     def draw(self):
         pygame.draw.rect(self.screen, self.color, self.rect, self.thick)

@@ -33,16 +33,27 @@ def main():
 
     ball = shapes.Circ(screen, config.GOLD, [600,400], 100, 5)
 
-    box = shapes.Rect(screen, config.ELECTRICLIME, 100 ,200 ,200 ,300 , 10)
+    box = shapes.Rect(screen, config.RICHMAROON, 225 ,200 ,200 ,300 , 0)
 
     running = True
     while running:
         running = handle_events()
         screen.fill(config.WHITE) # Use color from config
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_a]:
+            box.change_x_pos(box.x -5)
+        if keys[pygame.K_d]:
+            box.change_x_pos(box.x + 5)
+        if keys[pygame.K_w]:
+            box.change_y_pos(box.y - 5)
+        if keys[pygame.K_s]:
+            box.change_y_pos(box.y + 5)
         
-        ball.draw()
         box.draw()
 
+        draw_text(screen, [200,100], 'Move The Box', 50, 'DejaVuSans.ttf', config.BLACK, italic=True, bold=True)
+        draw_text(screen, [700,750], 'You Found Nothing', 10, 'DejaVuSans.ttf', config.WHITE, italic=True, bold=True)
         pygame.display.flip()
         
         # Limit the frame rate to the specified frames per second (FPS)
